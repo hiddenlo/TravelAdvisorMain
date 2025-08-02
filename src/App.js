@@ -53,10 +53,17 @@ const App = () => {
   const onLoad = (autoC) => setAutocomplete(autoC);
 
   const onPlaceChanged = () => {
-    const lat = autocomplete.getPlace().geometry.location.lat();
-    const lng = autocomplete.getPlace().geometry.location.lng();
+    if (autocomplete !== null) {
+      const place = autocomplete.getPlace();
+      if (place && place.geometry && place.geometry.location) {
+        const lat = place.geometry.location.lat();
+        const lng = place.geometry.location.lng();
 
-    setCoords({ lat, lng });
+        setCoords({ lat, lng });
+      } else {
+        console.warn('No valid place selected or place has no geometry data');
+      }
+    }
   };
 
   return (

@@ -18,7 +18,9 @@ export const getPlacesData = async (type, sw, ne) => {
 
     return data;
   } catch (error) {
-    console.log(error);
+    // eslint-disable-next-line no-console
+    console.error('Error fetching places data:', error);
+    throw error;
   }
 };
 
@@ -36,6 +38,8 @@ export const getWeatherData = async (lat, lng) => {
       return data;
     }
   } catch (error) {
-    console.log(error);
+    // eslint-disable-next-line no-console
+    console.error('Error fetching weather data:', error);
+    throw error;
   }
 };
